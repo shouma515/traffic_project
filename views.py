@@ -789,19 +789,7 @@ def parking_lots(request):
     return HttpResponse(response, content_type='application/json')
 
 def test(request):
-    s_date = request.GET['s_date']
-    e_date = request.GET['e_date']
-    start_date = date(int(s_date[0:4]),int(s_date[4:6]), int(s_date[6:8]))
-    end_date = date(int(e_date[0:4]),int(e_date[4:6]), int(e_date[6:8]))
-    incidents = Incidents.objects.filter(close_date__range=(start_date, end_date))
-    # Create the HttpResponse object with the appropriate CSV header.
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="incidents' + s_date + '-' + e_date + '.csv"'
-    writer = csv.writer(response)
-    writer.writerow(['event_id','st_rt_no','sr','cause','status','close_date','close_time','open_date','open_time','begin_lat','begin_lon','end_lat','end_lon'])
-    for incident in incidents:
-        writer.writerow([incident.eventid,incident.st_rt_no,incident.sr,incident.cause,incident.status,incident.close_date,incident.close_time,incident.open_date,incident.open_time,incident.s_lat,incident.s_lon,incident.e_lat,incident.e_lon])
-    return response
+    return HttpResponse("hello, world")
 
 def get_incidents_rcrs_area(request):
     s_date = request.GET['s_date']
