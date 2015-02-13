@@ -789,7 +789,7 @@ def parking_lots(request):
     return HttpResponse(response, content_type='application/json')
 
 def test(request):
-    return HttpResponse("hello, world")
+    return HttpResponse("hi, world")
 
 def get_incidents_rcrs_area(request):
     s_date = request.GET['s_date']
